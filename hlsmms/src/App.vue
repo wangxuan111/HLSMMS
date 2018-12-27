@@ -11,20 +11,13 @@
         <el-button type="danger" plain>危险按钮</el-button>
       </el-row>
       <br>
-      <br>
+      
       <el-switch
         v-model="value3"
         active-text="按月付费"
         inactive-text="按年付费">
       </el-switch>
-      <el-switch
-        style="display: block"
-        v-model="value4"
-        active-color="#13ce66"
-        inactive-color="#ff4949"
-        active-text="按月付费"
-        inactive-text="按年付费">
-      </el-switch>
+     
     </div>
   </div>
 </template>
