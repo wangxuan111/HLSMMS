@@ -1,51 +1,20 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <div>
-      <el-row>
-        <el-button plain>朴素按钮</el-button>
-        <el-button type="primary" plain>主要按钮</el-button>
-        <el-button type="success" plain>成功按钮</el-button>
-        <el-button type="info" plain>信息按钮</el-button>
-        <el-button type="warning" plain>警告按钮</el-button>
-        <el-button type="danger" plain>危险按钮</el-button>
-      </el-row>
-      <br>
-      
-      <el-switch
-        v-model="value3"
-        active-text="按月付费"
-        inactive-text="按年付费">
-      </el-switch>
-     
-    </div>
+    <!-- 添加路由插座（路由视图） -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'app',
-  components: {
-    HelloWorld
-  },
-  data() {
-    return {
-      value3: true,
-      value4: true
-    }
-  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+html,body,#app,#home,#loginbox{
+        margin: 0;
+        height: 100%;
+    }
+h1,h2,h3,h4,h4,p{margin: 0}
 </style>
