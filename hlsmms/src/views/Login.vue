@@ -5,7 +5,7 @@
             <h2>用户登录</h2>
         </div>
         <div class="text item">
-            <el-form :model="checkForm" status-icon :rules="rules" ref="checkForm" label-width="60px" class="demo-ruleForm">
+          <el-form :model="checkForm" status-icon :rules="rules" ref="checkForm" label-width="60px" class="demo-ruleForm">
             <el-form-item label="账号" prop="username">
                 <el-input type="text" v-model="checkForm.username" autocomplete="off" class="input"></el-input>
             </el-form-item>
@@ -17,7 +17,7 @@
                 <el-button id="log" type="primary" @click="submitForm('checkForm')" >提交</el-button>
                 <el-button id="res" @click="resetForm('checkForm')">重置</el-button>
             </el-form-item>
-            </el-form>
+          </el-form>
         </div>
     </el-card> 
 </div>  
@@ -60,14 +60,16 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
     .box-card{width: 480px;height: 300px;position: fixed;left: 0;right: 0;top: 0;
     bottom: 0;margin: auto;border-radius: 10px !important;background: rgba(0, 0, 0, .3) !important} 
+    .box-card h2{margin: 0px;}
     html,body,#loginbox{
         margin: 0;
         height: 100%;
     }
-    #loginbox{ background:url("../assets/loginbg.jpg") no-repeat;background-size: cover }
+    #loginbox{background:url("../assets/images/loginbg.jpg") no-repeat;background-size: cover;
+    }
     .el-card__body {padding: 20px 30px 20px 20px !important};
     #log{margin-left: 50px !important;}
     .el-button+.el-button {margin-left: 110px !important;}
