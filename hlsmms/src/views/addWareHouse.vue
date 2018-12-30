@@ -9,7 +9,7 @@
       <!-- 右边中间 -->
        <el-main>
         <el-card class="box-card">
-         <h3>系统信息</h3>
+         <h3>商品入库</h3>
         </el-card>
       </el-main>
       <!-- 右侧底部 -->
@@ -41,4 +41,5 @@ export default {
 <style scoped>
 
 </style>
+
 

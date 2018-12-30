@@ -19,22 +19,22 @@
           <template slot="title">
             <span>分类管理</span>
           </template>
-          <el-menu-item index="1-1">分类管理</el-menu-item>
-          <el-menu-item index="1-2">添加分类</el-menu-item>
+          <router-link to="/classmanage"><el-menu-item index="/classmanage">分类管理</el-menu-item></router-link>
+          <router-link to="/addclass"><el-menu-item index="/addclass">添加分类</el-menu-item></router-link>
         </el-submenu>
         <el-submenu index="2">
           <template slot="title">
             <span>商品管理</span>
           </template>
-          <el-menu-item index="2-1">商品管理</el-menu-item>
-          <el-menu-item index="2-2">添加商品</el-menu-item>
+          <router-link to="/goodsmanage"><el-menu-item index="/goodsmanage">商品管理</el-menu-item></router-link>
+          <router-link to="/addgoods"><el-menu-item index="/addgoods">添加商品</el-menu-item></router-link>
         </el-submenu>
         <el-submenu index="3">
           <template slot="title">
             <span>进货管理</span>
           </template>
-          <el-menu-item index="3-1">库存管理</el-menu-item>
-          <el-menu-item index="3-2">添加库存</el-menu-item>
+          <el-menu-item index="3-2">库存管理</el-menu-item>
+          <router-link to="/addwarehouse"><el-menu-item index="/addwarehouse">添加库存</el-menu-item></router-link>
         </el-submenu>
         <el-submenu index="4">
           <template slot="title">
@@ -55,9 +55,9 @@
           <template slot="title">
             <span>账号管理</span>
           </template>
-          <el-menu-item index="/userlist"><router-link to="/userlist">账号管理</router-link></el-menu-item>
-          <el-menu-item index="/useradd"><router-link to="/useradd">添加账号</router-link></el-menu-item>
-          <el-menu-item index="/passwordedit"><router-link to="/passwordedit">密码修改</router-link></el-menu-item>
+          <router-link to="/userlist"><el-menu-item index="/userlist">账号管理</el-menu-item></router-link>
+          <router-link to="/useradd"><el-menu-item index="/useradd">添加账号</el-menu-item></router-link>
+          <router-link to="/passwordedit"><el-menu-item index="/passwordedit">密码修改</el-menu-item></router-link>
         </el-submenu>
         <el-submenu index="7">
           <template slot="title">
@@ -83,7 +83,9 @@
 export default {
     methods: {
     handleOpen(key, keyPath) {
-      // console.log(key, keyPath);
+      console.log(key, keyPath);
+      console.log(this)
+      //this.style.backgroundColor='#fff';
     },
     handleClose(key, keyPath) {
       //console.log(key, keyPath);

@@ -61,17 +61,6 @@ export default {
 }
 </script>
 <style scoped>
-    .box-card{width: 480px;height: 300px;position: fixed;left: 0;right: 0;top: 0;
-    bottom: 0;margin: auto;border-radius: 10px !important;background: rgba(0, 0, 0, .3) !important} 
-    .box-card h2{margin: 0px;}
-    html,body,#loginbox{
-        margin: 0;
-        height: 100%;
-    }
-    #loginbox{background:url("../assets/images/loginbg.jpg") no-repeat;background-size: cover;
-    }
-    .el-card__body {padding: 20px 30px 20px 20px !important};
-    #log{margin-left: 50px !important;}
-    .el-button+.el-button {margin-left: 110px !important;}
+  
 </style>
 

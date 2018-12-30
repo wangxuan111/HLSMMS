@@ -7,7 +7,7 @@
       <!-- 右边顶部 -->
       <rightTop></rightTop>
       <!-- 右边中间 -->
-      <el-main>
+      <el-main id="useradd">
         <el-card class="box-card">
            <h3>添加管理员账号</h3>
            <el-form :model="checkForm" status-icon :rules="rules" label-position="top" ref="checkForm" label-width="60px" class="demo-ruleForm">
@@ -28,8 +28,7 @@
             </el-form-item>
             
             <el-form-item>
-                <el-button id="log" type="primary" @click="submitForm('checkForm')" >提交</el-button>
-                <el-button id="res" @click="resetForm('checkForm')">重置</el-button>
+                <el-button id="log" type="primary" @click="submitForm('checkForm')" >添加</el-button>
             </el-form-item>
           </el-form>
         </el-card>
@@ -105,26 +104,10 @@ export default {
 };
 </script>
 <style scoped>
-/* 右边中间卡片 */
-.box-card h3 {
-  margin-bottom: 20px;
-  line-height: 45px;
-  background: linear-gradient(#fff, #e5e5e5);
-  padding-left: 10px;
-}
-.el-alert--success,
-.el-alert--info {
-  margin-bottom: 20px;
-}
-#mainContent {
-  display: flex;
-  flex-wrap: wrap;
-}
-#mainContent > * {
-  width: 100%;
-}
-.el-form-item__label{line-height: 35px;}
+/*输入框和下拉框的宽度*/ 
 .el-input{width: 30%}
 .el-input--suffix{width: 100%}
+
+
 </style>
 

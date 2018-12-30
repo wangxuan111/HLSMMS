@@ -78,16 +78,8 @@ export default {
 };
 </script>
 <style scoped>
-/* 右边中间卡片 */
-.box-card h3 {
-  margin-bottom: 20px;
-  line-height: 45px;
-  background: linear-gradient(#fff, #e5e5e5);
-  padding-left: 10px;
-}
-.el-alert--success,
-.el-alert--info {
-  margin-bottom: 20px;
+.el-alert--success,.el-alert--info {
+  margin-bottom: 10px;
 }
 
 </style>

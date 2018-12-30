@@ -1,8 +1,18 @@
+/* 登录页面样式 */
+  #loginbox .box-card{width: 480px;height: 300px;position: fixed;left: 0;right: 0;top: 0;
+    bottom: 0;margin: auto;border-radius: 10px;background: rgba(0, 0, 0, .3)} 
+    #loginbox .box-card h2{margin: 0px;color: #fff;}
+    #loginbox{background:url("../images/loginbg.jpg") no-repeat;background-size: cover;
+    }
+    #loginbox .el-card__body {padding: 20px 30px 20px 20px}
+    #log{margin-left: 50px;background: #409EFF;border-color: #409EFF}
+    .el-button+.el-button {margin-left: 110px ;}
+
 html,body,#app,#home,#loginbox{
         margin: 0;
         height: 100%;
     }
-h1{margin: 0}
+h1,h3{margin: 0}
 
 a{color: #fff;text-decoration: none}
 /* 左侧 */
@@ -17,6 +27,8 @@ a{color: #fff;text-decoration: none}
     line-height: 31px;width: 206px;margin-left: 24px;border-radius: 5px 0px 0px 5px;
     margin-bottom: 10px;text-align: right;
 }
+/* 标题菜单点击状态 */
+
 /* 箭头图标 */
 .el-submenu__icon-arrow{display: none}
 /* 二级菜单 */
@@ -43,8 +55,8 @@ border-right: 1px solid #fff;line-height: 16px;text-align: center;}
 }
 .el-header{ padding-top: 30px;}
 .el-header h1{font-size: 26px;color: #000;margin: 0;}
-.el-header p{margin: 15px 0;}
-.el-footer p{border-top: 1px solid #ccc;height: 60px;line-height: 60px; margin: 0;}
+.el-header p{margin: 15px 0 0px;}
+.el-footer p{border-top: 1px solid #ccc;height: 60px;line-height: 50px; margin: 0;}
 /* 右边主要内容 */
 #mainContent{display: flex;flex-wrap: wrap;}
 #mainContent>*{width: 100%;}
@@ -52,3 +64,23 @@ border-right: 1px solid #fff;line-height: 16px;text-align: center;}
 
 /* 表格表头的颜色 */
 .el-table thead{color: #333;}
+/* 右边中间卡片 */
+.box-card h3 {
+  margin-bottom: 10px;
+  line-height: 45px;
+  background: linear-gradient(#fff, #e5e5e5);
+  padding-left: 10px;
+}
+/*添加账号页面，修改密码页面表单样式 */
+.el-form-item{margin-bottom: 18px} 
+/*lable与输入框的距离*/ 
+.el-form--label-top .el-form-item__label{line-height: 30px;padding:0;}
+/*按钮颜色*/ 
+.el-button--primary{background:linear-gradient(#7dbc00, #459300);
+border: 1px solid #459300;margin-top: 10px;
+}
+/* 管理商品的表单 */
+#goodsmanage .el-input__inner{height: 30px;line-height: 30px;}
+#goodsmanage .el-button{padding: 8px 20px;margin-top: 3px;}
+#goods .cell{padding-left: 0px;text-align: center}
+.el-table{border-top: 4px solid #ccc;}

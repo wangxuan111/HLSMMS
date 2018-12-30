@@ -27,6 +27,26 @@ export default new Router({
     {
       path: '/passwordedit',
       component: () => import(/* webpackChunkName: "passwordEdit" */ './views/passwordEdit.vue')
+    },
+    {
+      path: '/addclass',
+      component: () => import(/* webpackChunkName: "addClass" */ './views/addClass.vue')
+    },
+    {
+      path: '/classmanage',
+      component: () => import(/* webpackChunkName: "classManage" */ './views/classManage.vue')
+    },
+    {
+      path: '/addgoods',
+      component: () => import(/* webpackChunkName: "addGoods" */ './views/addGoods.vue')
+    },
+    {
+      path: '/goodsmanage',
+      component: () => import(/* webpackChunkName: "goodsManage" */ './views/goodsManage.vue')
+    },
+    {
+      path: '/addwarehouse',
+      component: () => import(/* webpackChunkName: "addWareHouse" */ './views/addWareHouse.vue')
     }
   ]
 })
