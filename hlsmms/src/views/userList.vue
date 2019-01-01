@@ -133,19 +133,20 @@ export default {
         if (valid) {
           //console.log(this.checkForm);
           //发送Ajax  post方式请求
-          this.axios.post(
+          this.axios
+            .post(
               "http://127.0.0.1:9191/user/usersave",
               this.qs.stringify(this.checkForm)
             )
             .then(result => {
-              if(result.data.isok){
+              if (result.data.isok) {
                 this.$message({
-                message: result.data.message,
-                type: "success"
-              });
-              this.dialogVisible=false;
-              this.getusers();
-              }else{
+                  message: result.data.message,
+                  type: "success"
+                });
+                this.dialogVisible = false;
+                this.getusers();
+              } else {
                 this.$message.error(result.data.message);
               }
             })
@@ -175,7 +176,8 @@ export default {
       //准备模态框（数据回填）
       this.dialogVisible = true;
       //发起ajax请求
-      this.axios.get(`http://127.0.0.1:9191/user/getuserData?userid=${userid}`)
+      this.axios
+        .get(`http://127.0.0.1:9191/user/getuserData?userid=${userid}`)
         .then(olduserData => {
           //console.log("成功",olduserData)
           this.checkForm = olduserData.data[0];
@@ -188,7 +190,8 @@ export default {
     handleDelete(userid) {
       //console.log(userid);
       //发起Ajax请求，把userid传到后台
-      this.axios.get(`http://127.0.0.1:9191/user/deluser?userid=${userid}`)
+      this.axios
+        .get(`http://127.0.0.1:9191/user/deluser?userid=${userid}`)
         .then(result => {
           //console.log("成功",result)
           //前端处理业务逻辑

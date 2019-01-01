@@ -5,7 +5,7 @@
       <span>admin</span>
     </p>
     <div id="melink">
-      <a href="#">管理首页</a>
+      <a href="#" @click="indexManage()">管理首页</a>
       <a href="#" @click="loginOut()">退出系统</a>
     </div>
     <el-menu
@@ -124,6 +124,9 @@ export default {
         .catch(err => {
           console.error(err.message);
         });
+    },
+    indexManage(){
+      this.$router.push("/")
     }
   }
 };

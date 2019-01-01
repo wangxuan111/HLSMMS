@@ -19,8 +19,8 @@
             label-width="60px"
             class="demo-ruleForm"
           >
-            <el-form-item label="原密码" prop="oldpwd">
-              <el-input type="password" v-model="checkForm.oldpwd" autocomplete="off" class="input"></el-input>
+            <el-form-item label="原密码" prop="userpwd">
+              <el-input type="password" v-model="checkForm.userpwd" autocomplete="off" class="input"></el-input>
             </el-form-item>
             <el-form-item label="新密码" prop="newpass">
               <el-input type="password" v-model="checkForm.newpass" autocomplete="off" class="input"></el-input>
@@ -55,12 +55,12 @@ export default {
       };
     return {
         checkForm: {
-          oldpwd:'',
+          userpwd:'',
           newpass: '',
           checkPass:'',
         },
         rules: {
-          oldpwd:[
+          userpwd:[
               { required: true, trigger: 'blur' ,message:"请输入原密码"},
               {min:6,max:18,message:"用户名长度在6-18个字符之间",trigger:'blur'}
           ],
@@ -80,8 +80,16 @@ export default {
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            // 跳转
+            // 前端验证通过
             alert('修改密码成功!!');
+            //发起Ajax请求
+            this.axios.post("http://127.0.0.1:9191/user/passwordEdit",
+            this.qs.stringify(this.checkForm)
+            ).then(result=>{
+              console.log("成功",result)
+            }).catch(err=>{
+              console.error("错误了",err.message);
+            })
           } else {
             alert('修改密码失败!!');
             return false;

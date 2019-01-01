@@ -174,5 +174,9 @@ router.get("/loginOut",(req,res)=>{
   res.json({"isok":true})
 })
 
+//修改密码的路由
+router.post("/passwordEdit",(req,res)=>{
+  
+})
 
 module.exports = router;
