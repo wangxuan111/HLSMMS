@@ -8,12 +8,12 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/home',
+      path: '/',
       component: Home
     },
     // 配置登录路由
     {
-      path: '/',
+      path: '/login',
       component: Login
     },
     {
