@@ -69,7 +69,7 @@ export default {
           //前端验证通过后，发起ajax请求
           this.axios
             .post(
-              "http://127.0.0.1:9191/user/checkLogin",
+              this.apiHost+"/user/checkLogin",
               this.qs.stringify(this.checkForm)
             )
             .then(result => {

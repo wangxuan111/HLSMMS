@@ -14,13 +14,17 @@ Vue.prototype.qs=qs
 // import moment from 'moment'
 // Vue.prototype.moment=moment
 
+//全局配置api主机地址
+let serverApiHost ="http://127.0.0.1:9191"
+Vue.prototype.apiHost = serverApiHost;
+
 //构造全局守卫
 router.beforeEach((to,from,next)=>{
   //只有登录成功才放行
   //让ajax携带cookie证书
   axios.defaults.withCredentials=true;
   //发起Ajax请求到后端，获取cookie，如果cookie存在（或在登录页面）就放行
-  axios.get("http://127.0.0.1:9191/user/getCookie").then(result=>{
+  axios.get(serverApiHost+"/user/getCookie").then(result=>{
     //console.log("验证成功的结果",result)
     if(result.data.isok || to.path=="/login"){
       //放行

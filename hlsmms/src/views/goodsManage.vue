@@ -10,29 +10,30 @@
       <el-main>
         <el-card class="box-card">
           <h3>商品管理</h3>
-          <el-form :inline="true" :model="formInline" class="demo-form-inline" id="goodsmanage">
+          <el-form :inline="true" :model="goodsForm" class="demo-form-inline" id="goodsmanage">
             <el-form-item>
-              <el-select v-model="formInline.classoption" placeholder="选择分类">
-                <el-option label="分类1" value="class1"></el-option>
-                <el-option label="分类2" value="class2"></el-option>
+              <el-select v-model="goodsForm.classname" placeholder="-------顶级分类-------">
+                <el-option label="食品" value="食品"></el-option>
+                <el-option label="服装" value="服装"></el-option>
+                <el-option label="鞋包" value="鞋包"></el-option>
+                <el-option label="美妆" value="美妆"></el-option>
               </el-select>
             </el-form-item>
             <el-form-item label="关键字：">
-              <el-input v-model="formInline.keyword"></el-input>(商品名称，条形码)
+              <el-input v-model="goodsForm.keyword"></el-input>(商品名称，条形码)
             </el-form-item>
             <el-button type="primary" @click="onSubmit">查询</el-button>
+            <el-button type="primary" @click="reset">重置</el-button>
           </el-form>
 
           <el-table :data="tableData" stripe style="width: 100%" id="goods">
-            <el-table-column prop="goodsbarcode" label="商品条形码" width="120"></el-table-column>
+            <el-table-column prop="barcode" label="商品条形码"></el-table-column>
             <el-table-column prop="goodsname" label="商品名称"></el-table-column>
-            <el-table-column prop="belong" label="所属分类" width="70"></el-table-column>
-            <el-table-column prop="saleprice" label="售价(元)" width="70"></el-table-column>
-            <el-table-column prop="sellP" label="促销价(元)"></el-table-column>
+            <el-table-column prop="classname" label="所属分类"></el-table-column>
+            <el-table-column prop="saleprice" label="售价(元)" ></el-table-column>
+            <el-table-column prop="costprice" label="成本价(元)"></el-table-column>
             <el-table-column prop="marketprice" label="市场价(元)"></el-table-column>
-            <el-table-column prop="repertory" label="库存" width="70"></el-table-column>
-            <el-table-column prop="totalrepertory" label="库存总额(元)"></el-table-column>
-            <el-table-column prop="totalsale" label="销售总额(元)"></el-table-column>
+            <el-table-column prop="stocknum" label="库存"></el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
                 <el-button type="primary" icon="el-icon-edit" circle></el-button>
@@ -45,10 +46,12 @@
             <el-pagination
               @size-change="handleSizeChange"
               @current-change="handleCurrentChange"
-              :current-page.sync="currentPage"
+              :current-page="currentPage"
+              :page-sizes="[100, 200, 300, 400]"
               :page-size="100"
-              layout="prev, pager, next, jumper"
-              :total="1000"
+              layout="total, sizes, prev, pager, next, jumper"
+              :total="total"
+              background
             ></el-pagination>
           </div>
         </el-card>
@@ -67,71 +70,47 @@ import rightBottom from "../components/rightBottom";
 export default {
   data() {
     return {
-      formInline: {
-        keyword: "",
-        classoption: ""
+      goodsForm: {
+        keywords: "",
+        classname: ""
       },
-      tableData: [
-        {
-          goodsbarcode: "1234567890245",
-          goodsname: "优乐美",
-          belong: "食品",
-          saleprice: "2.00",
-          sellP: "未促销",
-          marketprice: "2.40",
-          repertory: "0",
-          totalrepertory: "0.00",
-          totalsale: "0.00"
-        },
-        {
-          goodsbarcode: "1234567890245",
-          goodsname: "优乐美",
-          belong: "食品",
-          saleprice: "2.00",
-          sellP: "未促销",
-          marketprice: "2.40",
-          repertory: "0",
-          totalrepertory: "0.00",
-          totalsale: "0.00"
-        },
-        {
-          goodsbarcode: "1234567890245",
-          goodsname: "优乐美",
-          belong: "食品",
-          saleprice: "2.00",
-          sellP: "未促销",
-          marketprice: "2.40",
-          repertory: "0",
-          totalrepertory: "0.00",
-          totalsale: "0.00"
-        },
-        {
-          goodsbarcode: "1234567890245",
-          goodsname: "优乐美",
-          belong: "食品",
-          saleprice: "2.00",
-          sellP: "未促销",
-          marketprice: "2.40",
-          repertory: "0",
-          totalrepertory: "0.00",
-          totalsale: "0.00"
-        }
-      ],
-      currentPage: 5
+      currentPage: 1,
+      tableData: []
     };
   },
   methods: {
-    onSubmit() {
-      console.log("submit!");
+    getGoods(){
+      //发起Ajax请求
+      this.axios.get(this.apiHost+`/goods/goodsmanage?classname=${this.goodsForm.classname}&keywords=${this.goodsForm.keywords}`)
+      .then(result=>{
+        console.log("成功"+result)
+        //把后端查询到的数据赋值给tableData
+        this.tableData=result.data
+      }).catch(err=>{
+        console.error("错误：",err.message)
+      })
     },
-    methods: {
-      handleSizeChange(val) {
+    reset(){
+      this.goodsForm.classname="";
+      this.goodsForm.keywords="";
+      //获取数据，查询全表
+      this.getGoods();
+    },
+    onSubmit() {
+      //console.log("submit!");
+      //发送Ajax请求，桉树是classname和keywords
+      this.getGoods();
+    },
+     handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
       }
-    },
+  },
+  created(){
+    //发起Ajax请求，获取商品列表
+    this.getGoods();
   },
   components: {
     // 注册组件
@@ -151,6 +130,8 @@ export default {
 .el-input {
   width: 62%;
 }
-.block{margin-top: 20px;}
+.block {
+  margin-top: 20px;
+}
 </style>
 

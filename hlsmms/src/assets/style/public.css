@@ -5,8 +5,8 @@
     #loginbox{background:url("../images/loginbg.jpg") no-repeat;background-size: cover;
     }
     #loginbox .el-card__body {padding: 20px 30px 20px 20px}
-    #log{margin-left: 50px;background: #409EFF;border-color: #409EFF}
-    .el-button+.el-button {margin-left: 110px ;}
+    #loginbox #log{margin-left: 50px;background: #409EFF;border-color: #409EFF}
+    #loginbox .el-button+.el-button {margin-left: 110px ;}
 
 html,body,#app,#home,#loginbox{
         margin: 0;
@@ -84,3 +84,5 @@ border: 1px solid #459300;margin-top: 10px;
 #goodsmanage .el-button{padding: 8px 20px;margin-top: 3px;}
 #goods .cell{padding-left: 0px;text-align: center}
 .el-table{border-top: 4px solid #ccc;}
+/* 商品添加页面*/
+#goodsadd .el-form-item__content{line-height: 50px;}

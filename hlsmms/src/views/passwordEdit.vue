@@ -57,7 +57,7 @@ export default {
         checkForm: {
           userpwd:'',
           newpass: '',
-          checkPass:'',
+          checkPass:''
         },
         rules: {
           userpwd:[
@@ -81,12 +81,21 @@ export default {
         this.$refs[formName].validate((valid) => {
           if (valid) {
             // 前端验证通过
-            alert('修改密码成功!!');
+            //alert('修改密码成功!!');
             //发起Ajax请求
-            this.axios.post("http://127.0.0.1:9191/user/passwordEdit",
+            this.axios.post(this.apiHost+"/user/passwordEdit",
             this.qs.stringify(this.checkForm)
             ).then(result=>{
-              console.log("成功",result)
+              //console.log("成功",result)
+              if(result.data.isok){
+                this.$message({
+                  message: result.data.message,
+                  type: "success"
+                });
+                 this.$router.push("/login");
+              }else{
+                this.$message.error(result.data.message);
+              }
             }).catch(err=>{
               console.error("错误了",err.message);
             })

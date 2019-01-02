@@ -110,7 +110,7 @@ export default {
           //发送Ajax  post方式请求
           this.axios
             .post(
-              "http://127.0.0.1:9191/user/useradd",
+              this.apiHost+"/user/useradd",
               this.qs.stringify(this.checkForm)
             )
             .then(result => {

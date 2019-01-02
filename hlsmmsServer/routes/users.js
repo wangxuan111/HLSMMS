@@ -1,23 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-//引入mysql模块
-const mysql=require('mysql');
-//数据库连接配置
-const conn=mysql.createConnection({
-  host:"localhost",
-  user:"root",
-  password:"root",
-  database:"hlsmms"
-});
-//打开数据库连接
-conn.connect(err=>{
-  if(err){
-    console.log("数据库连接失败", err.message);
-  }else{
-    console.log("数据库连接成功")
-  }
-})
+//引入
+var conn = require('./conn');
 
 //跨域请求
 router.all("*", (req, res, next) => {
@@ -118,7 +103,7 @@ router.post("/usersave",(req,res)=>{
     if(err){
       throw err
     }else{
-      if (result.affectedRows){
+      if (result.affectedRows>0){
         res.json({"isok":true,"message":"用户修改成功"})
       }else{
         res.json({ "isok": false, "message": "用户修改失败" })
@@ -176,7 +161,29 @@ router.get("/loginOut",(req,res)=>{
 
 //修改密码的路由
 router.post("/passwordEdit",(req,res)=>{
-  
+  let userid = req.cookies.userid;
+  //res.send(userid)
+  //接收参数newpass和userpwd
+  let {userpwd, newpass}=req.body;
+  //res.send(userid+userpwd+newpass)
+  //构造sql语句
+  let sqlStr = `update userinfo set userpwd=${newpass} where userid=${userid}`;
+  //参数数组
+  //let params={}
+  //执行sql语句
+  conn.query(sqlStr,(err,result)=>{
+    if(err){
+      throw err
+    }else{
+      if(result.affectedRows>0){
+        res.send({"isok":true,"message":"修改密码成功,请重新登录"})
+      }else{
+        res.send({ "isok": false, "message": "修改密码失败" })
+      }
+    }
+  })
+
 })
+
 
 module.exports = router;

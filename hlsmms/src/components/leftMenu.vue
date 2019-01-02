@@ -2,7 +2,8 @@
   <el-aside width="230px">
     <h1>华联超市管理系统</h1>
     <p id="hy">您好，
-      <span>admin</span>
+      <span>Admin
+      </span>
     </p>
     <div id="melink">
       <a href="#" @click="indexManage()">管理首页</a>
@@ -97,6 +98,11 @@
 
 <script>
 export default {
+  // data(){
+  //   return{
+  //     username:$cookieStore.getCookie('username')
+  //   }
+  // },
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);

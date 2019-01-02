@@ -135,7 +135,7 @@ export default {
           //发送Ajax  post方式请求
           this.axios
             .post(
-              "http://127.0.0.1:9191/user/usersave",
+              this.apiHost+"/user/usersave",
               this.qs.stringify(this.checkForm)
             )
             .then(result => {
@@ -161,7 +161,7 @@ export default {
     //更新用户列表封装函数
     getusers() {
       this.axios
-        .get("http://127.0.0.1:9191/user/getusers")
+        .get(this.apiHost+"/user/getusers")
         .then(result => {
           //console.log("后端返回的数据",result.data);
           this.tableData = result.data; //把返回的数据赋值给表格数据属性
@@ -177,7 +177,7 @@ export default {
       this.dialogVisible = true;
       //发起ajax请求
       this.axios
-        .get(`http://127.0.0.1:9191/user/getuserData?userid=${userid}`)
+        .get(`${this.apiHost}/user/getuserData?userid=${userid}`)
         .then(olduserData => {
           //console.log("成功",olduserData)
           this.checkForm = olduserData.data[0];
@@ -191,7 +191,7 @@ export default {
       //console.log(userid);
       //发起Ajax请求，把userid传到后台
       this.axios
-        .get(`http://127.0.0.1:9191/user/deluser?userid=${userid}`)
+        .get(`${this.apiHost}/user/deluser?userid=${userid}`)
         .then(result => {
           //console.log("成功",result)
           //前端处理业务逻辑
