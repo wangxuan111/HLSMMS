@@ -48,5 +48,10 @@ export default new Router({
       path: '/addwarehouse',
       component: () => import(/* webpackChunkName: "addWareHouse" */ './views/addWareHouse.vue')
     }
+    ,
+    {
+      path: '/saleecharts',
+      component: () => import(/* webpackChunkName: "saleEcharts" */ './views/saleEcharts.vue')
+    }
   ]
 })

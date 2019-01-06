@@ -61,38 +61,52 @@ router.get("/goodsmanage", (req, res) => {
         }
     })
 
-    //分页，
-
+    //分页，传参数，pagesize,currentpage
+    let { pagesize, currentpage}=req.query;
+    console.log(pagesize, currentpage)
+    //设置每一页的显示
+    if (pagesize && currentpage){
+        //跳过的条数
+        let n=(currentpage-1)*pagesize;
+        //构造sql语句
+        sqlStr += ` limit ${n},${pagesize}`
+    }
 
   //2. 执行SQL语句
-  conn.query(sqlStr, (err, result) => {
+    conn.query(sqlStr, (err, goodsArray) => {
     if (err) {
       throw err;
     }
     else {
       //3. 返回查询的商品数据给前端
-      res.send(result);
+    //   res.send(result);
+    res.send({"total":total,"goodsArray":goodsArray});
     }
   })
 })
 
+//销售统计报表的路由
+// router.get("/saleecharts",(req,res)=>{
+//     //构造sql语句，查询classname字段
+//     let sqlStr="select stocknum from goodsinfo"
+//     //执行sql语句
+//     conn.query(sqlStr,(err,result)=>{
+//         if(err){
+//             throw err;
+//         }else{
+//             res.send(result)
+//         }
+//     })
+// })
 
 
 
-
-
-
-
-
-
-
-
-/* //后端接收删除商品列表的请求
-router.get("/deluser",(req,res)=>{
+//后端接收删除商品列表的请求
+router.get("/delgoods",(req,res)=>{
   //接收参数（userid）
-  let userid = req.query.userid
+  let goodsid = req.query.goodsid
   //构造sql语句
-  const sqlStr = `delete from userinfo where userid=${userid}`
+  const sqlStr = `delete from goodsinfo where goodsid=${goodsid}`
   //执行删除命令
   conn.query(sqlStr,(err,result)=>{
     if(err){
@@ -109,31 +123,31 @@ router.get("/deluser",(req,res)=>{
 })
 
 //获取旧的商品数据的路由
-router.get("/getuserData",(req,res)=>{
-  let userid=req.query.userid;
+router.get("/getgoodsData",(req,res)=>{
+  let goodsid=req.query.goodsid;
   //构造sql查询语句
-  let sqlStr=`select * from userinfo where userid=${userid}`;
+  let sqlStr=`select * from goodsinfo where goodsid=${goodsid}`;
   //执行SQL语句
-  conn.query(sqlStr,(err,olduserData)=>{
+  conn.query(sqlStr,(err,result)=>{
     if(err){
       throw err
     }else{
       //拿到旧的数据回填到模态框
-      res.send(olduserData)
+      res.send(result)
     }
   })
 })
 
 //修改数据后，保存商品数据的路由
-router.post("/usersave",(req,res)=>{
+router.post("/goodssave",(req,res)=>{
   //接收参数
-  let { userid, username, userpwd, usergroup, addDate}=req.body;
+  let { classname, barcode, goodsname, saleprice, marketprice, costprice, stocknum, weight, unit, isdiscount, ispromotion, details}=req.body;
   //构造sql语句
-  let sqlStr="update userinfo set username=?,userpwd=?,usergroup=? where userid=?";
+  let sqlStr ="update userinfo set classname=?,barcode=?,goodsname=?,saleprice=?,marketprice=?,costprice=?,stocknum=?,weight=?,unit=?,isdiscount=?,ispromotion=?,details=? where googsid=?";
   //参数数组
-  let params=[username,userpwd,usergroup,userid];
+  let sqlparams = [classname, barcode, goodsname, saleprice, marketprice, costprice, stocknum, weight, unit, isdiscount, ispromotion, details];
   //执行sql语句
-  conn.query(sqlStr,params,(err,result)=>{
+  conn.query(sqlStr, sqlparams,(err,result)=>{
     if(err){
       throw err
     }else{
@@ -145,7 +159,7 @@ router.post("/usersave",(req,res)=>{
     }
   })
 })
- */
+/* */
 
 
 module.exports = router;

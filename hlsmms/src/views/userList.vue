@@ -163,7 +163,7 @@ export default {
       this.axios
         .get(this.apiHost+"/user/getusers")
         .then(result => {
-          //console.log("后端返回的数据",result.data);
+          console.log("后端返回的数据",result.data);
           this.tableData = result.data; //把返回的数据赋值给表格数据属性
         })
         .catch(err => {
@@ -196,12 +196,21 @@ export default {
           //console.log("成功",result)
           //前端处理业务逻辑
           if (result.data.isok) {
-            this.$message({
-              message: result.data.message,
-              type: "success"
-            });
-            //更新用户列表
+            this.$confirm("是否确认删除该用户？", "提示", {
+                  confirmButtonText: "确定",
+                  cancelButtonText: "取消",
+                  type: "warning"
+                })
+                  .then(() => {
+                    this.$message({
+                      type: "success",
+                      message: result.data.message
+                    });
+                    //更新用户列表
             this.getusers();
+                  })
+                  .catch(() => {
+                  });
           } else {
             this.$message.error(result.data.message);
           }

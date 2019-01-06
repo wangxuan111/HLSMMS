@@ -20,7 +20,7 @@
             class="demo-ruleForm"
           >
             <el-form-item label="原密码" prop="userpwd">
-              <el-input type="password" v-model="checkForm.userpwd" autocomplete="off" class="input"></el-input>
+              <el-input type="text" v-model="checkForm.userpwd" autocomplete="off" class="input"></el-input>
             </el-form-item>
             <el-form-item label="新密码" prop="newpass">
               <el-input type="password" v-model="checkForm.newpass" autocomplete="off" class="input"></el-input>

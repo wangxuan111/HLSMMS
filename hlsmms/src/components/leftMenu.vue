@@ -2,7 +2,7 @@
   <el-aside width="230px">
     <h1>华联超市管理系统</h1>
     <p id="hy">您好，
-      <span>Admin
+      <span v-text="username">
       </span>
     </p>
     <div id="melink">
@@ -59,7 +59,7 @@
         <template slot="title">
           <span>统计管理</span>
         </template>
-        <el-menu-item index="5-1">销售统计</el-menu-item>
+       <router-link to="/saleecharts"><el-menu-item index="/saleecharts">销售统计</el-menu-item></router-link>
         <el-menu-item index="5-2">进货统计</el-menu-item>
       </el-submenu>
       <el-submenu index="6">
@@ -98,11 +98,22 @@
 
 <script>
 export default {
-  // data(){
-  //   return{
-  //     username:$cookieStore.getCookie('username')
-  //   }
-  // },
+  data(){
+    return{
+      username:""
+    }
+  },
+  //发起Ajax请求，拿cookie的username
+  created(){
+    this.axios.get(this.apiHost+"/user/getusername")
+    .then(result=>{
+      //console.log("成功",result)
+      this.username=result.data
+    }).catch(err=>{
+      console.error(err.message)
+    })
+  },
+
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);

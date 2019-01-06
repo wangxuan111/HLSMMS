@@ -40,6 +40,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 app.listen(9191,()=>{
- console.log("服务器启动成功，地址是http://127.0.0.1:9191/");
+  console.log("服务器启动成功，地址是http://127.0.0.1:9191/");
 })
 module.exports = app;

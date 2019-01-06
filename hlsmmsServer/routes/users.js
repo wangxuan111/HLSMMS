@@ -184,6 +184,10 @@ router.post("/passwordEdit",(req,res)=>{
   })
 
 })
-
+//显示Admin的路由
+router.get("/getusername",(req,res)=>{
+  let username=req.cookies.username;
+  res.send(username);
+})
 
 module.exports = router;

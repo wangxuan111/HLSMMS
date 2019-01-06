@@ -123,11 +123,12 @@ export default {
                   type: "warning"
                 })
                   .then(() => {
-                    this.$message({
-                      type: "success",
-                      message: "继续添加用户!"
-                    });
-                    
+                    this.checkForm= {
+                      username: "",
+                      pass: "",
+                      checkPass: "",
+                      usergroup: ""
+                    }
                   })
                   .catch(() => {
                     this.$router.push("/userlist");
